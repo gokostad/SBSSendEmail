@@ -51,7 +51,6 @@
 @interface Controller: NSObject {
 	IBOutlet NSTextField *toField;
 	IBOutlet NSTextField *fromField;
-	IBOutlet NSTextField *subjectField;
 	IBOutlet NSTextView *messageContent;
 	IBOutlet NSTextField *toScreen;
 	IBOutlet NSTextField *coordX;
@@ -60,12 +59,12 @@
     IBOutlet NSTextField *picH;
     IBOutlet NSComboBox *picOperation;
     IBOutlet NSProgressIndicator *progressIndicator;
-    IBOutlet NSTextField *error;
+    IBOutlet NSTextField *lblError;
+    IBOutlet NSStepper *stepperToScreen;
 }
 
 @property(retain, readwrite) NSTextField *toField;
 @property(retain, readwrite) NSTextField *fromField;
-@property(retain, readwrite) NSTextField *subjectField;
 @property(retain, readwrite) NSTextView *messageContent;
 @property(retain, readwrite) NSTextField *toScreen;
 @property(retain, readwrite) NSTextField *coordX;
@@ -74,7 +73,8 @@
 @property(retain, readwrite) NSTextField *picH;
 @property(retain, readwrite) NSComboBox *picOperation;
 @property(retain, readwrite) NSProgressIndicator *progressIndicator;
-@property(retain, readwrite) NSTextField *error;
+@property(retain, readwrite) NSTextField *lblError;
+@property(retain, readwrite) NSStepper *stepperToScreen;
 
 - (IBAction)sendEmailMessage:(id)sender;
 

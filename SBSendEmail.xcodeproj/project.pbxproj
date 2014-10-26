@@ -14,6 +14,8 @@
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
+		C608EB7919FC181D001EA6DB /* StepperObject.m in Sources */ = {isa = PBXBuildFile; fileRef = C608EB7819FC181D001EA6DB /* StepperObject.m */; };
+		C608EB7C19FC189B001EA6DB /* StepperControler.m in Sources */ = {isa = PBXBuildFile; fileRef = C608EB7B19FC189B001EA6DB /* StepperControler.m */; };
 		D0F202F413C38974007CDA0A /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = D0F202F613C38974007CDA0A /* Credits.rtf */; };
 /* End PBXBuildFile section */
 
@@ -47,6 +49,10 @@
 		52E2A1F40D6F63EE006556C0 /* ReadMe.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ReadMe.txt; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* SBSendEmail.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SBSendEmail.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C608EB7719FC181D001EA6DB /* StepperObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StepperObject.h; sourceTree = "<group>"; };
+		C608EB7819FC181D001EA6DB /* StepperObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StepperObject.m; sourceTree = "<group>"; };
+		C608EB7A19FC189B001EA6DB /* StepperControler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StepperControler.h; sourceTree = "<group>"; };
+		C608EB7B19FC189B001EA6DB /* StepperControler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StepperControler.m; sourceTree = "<group>"; };
 		D0F202F513C38974007CDA0A /* English */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = English; path = English.lproj/Credits.rtf; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -66,6 +72,10 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				C608EB7719FC181D001EA6DB /* StepperObject.h */,
+				C608EB7A19FC189B001EA6DB /* StepperControler.h */,
+				C608EB7B19FC189B001EA6DB /* StepperControler.m */,
+				C608EB7819FC181D001EA6DB /* StepperObject.m */,
 				52C221F10D6B8C98004F73F0 /* Controller.h */,
 				52C221F20D6B8C98004F73F0 /* Controller.m */,
 			);
@@ -170,7 +180,7 @@
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0420;
+				LastUpgradeCheck = 0610;
 			};
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "SBSendEmail" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -206,6 +216,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C608EB7C19FC189B001EA6DB /* StepperControler.m in Sources */,
+				C608EB7919FC181D001EA6DB /* StepperObject.m in Sources */,
 				52C2220F0D6B8FB7004F73F0 /* Mail.app in Sources */,
 				8D11072D0486CEB800E47090 /* main.m in Sources */,
 				52C221F30D6B8C98004F73F0 /* Controller.m in Sources */,
@@ -245,6 +257,7 @@
 		C01FCF4B08A954540054247B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_MODEL_TUNING = G5;
@@ -262,6 +275,7 @@
 		C01FCF4C08A954540054247B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -276,11 +290,11 @@
 		C01FCF4F08A954540054247B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
 			};
 			name = Debug;
@@ -288,7 +302,6 @@
 		C01FCF5008A954540054247B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;

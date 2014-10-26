@@ -57,8 +57,9 @@ const int MAX_SENDING_MAIL_CONTENT_LENGTH = 0x1F4; //500
 @implementation Controller
 
 
-@synthesize toField, fromField, subjectField, messageContent, toScreen,
-coordX, coordY, picW, picH, picOperation, progressIndicator, error;
+@synthesize toField, fromField, messageContent, toScreen,
+coordX, coordY, picW, picH, picOperation, progressIndicator, lblError,
+stepperToScreen;
 
 
 - (void)awakeFromNib {
@@ -150,36 +151,36 @@ coordX, coordY, picW, picH, picOperation, progressIndicator, error;
     
     if (w <= 0 || w > 128 || w%8 != 0)
     {
-        [self.error setStringValue:@"Error: width [1-128], divisible with 8!"];
-        [self.error setHidden:false];
+        [self.lblError setStringValue:@"Error: width [1-128], divisible with 8!"];
+        [self.lblError setHidden:false];
         return;
     }
     
     if (h <= 0 || h > 128)
     {
-        [self.error setStringValue:@"Error: height (H) [1-128]!"];
-        [self.error setHidden:false];
+        [self.lblError setStringValue:@"Error: height (H) [1-128]!"];
+        [self.lblError setHidden:false];
         return;
     }
  
     if (x < 0 || x >= 128)
     {
-        [self.error setStringValue:@"Error: X [0-127]!"];
-        [self.error setHidden:false];
+        [self.lblError setStringValue:@"Error: X [0-127]!"];
+        [self.lblError setHidden:false];
         return;
     }
     
     if (y < 0 || y >= 128)
     {
-        [self.error setStringValue:@"Error: Y [0-127]!"];
-        [self.error setHidden:false];
+        [self.lblError setStringValue:@"Error: Y [0-127]!"];
+        [self.lblError setHidden:false];
         return;
     }
     
     if ( (((int)(w/8))+(w%8 == 0 ? 0 : 1))*2*h != length_strContent)
     {
-        [self.error setStringValue:@"Error: data amount isn't as required by width and heigh!"];
-        [self.error setHidden:false];
+        [self.lblError setStringValue:@"Error: data amount isn't as required by width and heigh!"];
+        [self.lblError setHidden:false];
         return;
     }
     
@@ -187,8 +188,8 @@ coordX, coordY, picW, picH, picOperation, progressIndicator, error;
     if (operationNumber < 0)
         operationNumber = 0;
     
-    [self.error setStringValue:@""];
-    [self.error setHidden:true];
+    [self.lblError setStringValue:@""];
+    [self.lblError setHidden:true];
     
     [self.progressIndicator setMaxValue: length_strContent];
     [self.progressIndicator setDoubleValue:0];
@@ -232,8 +233,6 @@ coordX, coordY, picW, picH, picOperation, progressIndicator, error;
         if ( [mail lastError] != nil )
             return;
         
-            /* add an attachment, if one was specified */
-        NSString *attachmentFilePath = NULL;
             /* send the message */
         
         [emailMessage send];
