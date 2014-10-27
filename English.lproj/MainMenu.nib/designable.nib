@@ -469,16 +469,20 @@
                     <textField toolTip="1-10" verticalHuggingPriority="750" id="Tzx-Mt-ZqG">
                         <rect key="frame" x="400" y="279" width="53" height="22"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" title="1" placeholderString="" drawsBackground="YES" id="r0R-mX-FOX">
-                            <numberFormatter key="formatter" formatterBehavior="default10_4" numberStyle="decimal" minimumIntegerDigits="1" maximumIntegerDigits="309" maximumFractionDigits="3" id="5Pe-B2-RVN"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="left" placeholderString="1" drawsBackground="YES" id="r0R-mX-FOX">
+                            <numberFormatter key="formatter" formatterBehavior="default10_4" numberStyle="decimal" minimumIntegerDigits="1" maximumIntegerDigits="309" maximumFractionDigits="3" id="5Pe-B2-RVN">
+                                <real key="minimum" value="1"/>
+                                <real key="maximum" value="20"/>
+                                <metadata>
+                                    <real key="inspectorSampleValue" value="1"/>
+                                </metadata>
+                            </numberFormatter>
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                         <connections>
-                            <binding destination="CsK-oz-vFe" name="maxValue" keyPath="selection.stepperValue" id="2va-uP-MsW"/>
-                            <binding destination="CsK-oz-vFe" name="minValue" keyPath="selection.stepperValue" previousBinding="2va-uP-MsW" id="iG3-Qi-pD0"/>
-                            <binding destination="CsK-oz-vFe" name="value" keyPath="selection.stepperValue" previousBinding="iG3-Qi-pD0" id="y8E-Yz-ykJ"/>
+                            <binding destination="CsK-oz-vFe" name="value" keyPath="selection.stepperValue" id="tcp-dQ-dNo"/>
                         </connections>
                     </textField>
                     <textField toolTip="0-127" verticalHuggingPriority="750" id="XEx-0r-9je">
@@ -604,7 +608,7 @@
                         <rect key="frame" x="19" y="268" width="98" height="44"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                        <size key="cellSize" width="98" height="21"/>
+                        <size key="cellSize" width="97" height="18"/>
                         <size key="intercellSpacing" width="4" height="2"/>
                         <buttonCell key="prototype" type="radio" title="Radio" imagePosition="left" alignment="left" inset="2" id="fln-OV-e9V">
                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -628,9 +632,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <stepperCell key="cell" continuous="YES" alignment="left" minValue="1" maxValue="20" doubleValue="1" id="T7b-XH-sPe"/>
                         <connections>
-                            <binding destination="CsK-oz-vFe" name="maxValue" keyPath="selection.stepperValue" id="zBJ-be-Pmk"/>
-                            <binding destination="CsK-oz-vFe" name="minValue" keyPath="selection.stepperValue" previousBinding="zBJ-be-Pmk" id="d0N-gB-8gl"/>
-                            <binding destination="CsK-oz-vFe" name="value" keyPath="selection.stepperValue" previousBinding="d0N-gB-8gl" id="4ge-SZ-ARi"/>
+                            <binding destination="CsK-oz-vFe" name="value" keyPath="selection.stepperValue" id="Wlb-ya-tEj"/>
                         </connections>
                     </stepper>
                     <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" id="al7-Ik-wsA">

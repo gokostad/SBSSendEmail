@@ -57,7 +57,7 @@ const int MAX_SENDING_MAIL_CONTENT_LENGTH = 0x1F4; //500
 @implementation Controller
 
 
-@synthesize toField, fromField, messageContent, toScreen,
+@synthesize toField, fromField, messageContent, isBkg, toScreen,
 coordX, coordY, picW, picH, picOperation, progressIndicator, lblError,
 stepperToScreen;
 
@@ -65,9 +65,10 @@ stepperToScreen;
 - (void)awakeFromNib {
 	
     [self.messageContent setFont:[NSFont fontWithName:@"Courier" size:12]];
+    [self.toScreen setTitleWithMnemonic: @"1"];
+    [self.toScreen.formatter setNilSymbol: @"1"];
 
 }
-
 
 - (BOOL)applicationShouldTerminateAfterLastWindowClosed:(NSApplication *)sender {
 	return YES;
@@ -109,7 +110,7 @@ stepperToScreen;
     @catch (NSException *exception) {
         bufferNumber = 1;
     }
-    if (bufferNumber < 1 || bufferNumber > 10)
+    if (bufferNumber < 1 || bufferNumber > 20)
         bufferNumber = 1;
     bufferNumber--;
     
@@ -198,8 +199,11 @@ stepperToScreen;
     int sentData = 0;
  
     for (int i = 1; length_toSend > 0; i++) {
+        NSInteger nI = [self.isBkg selectedTag];
+ 
         
-        NSString *strSubject = [NSString stringWithFormat:@"sbs%02i.%02i.%03i.%03i.%03i.%03i.%02i.%04i part of bitmap to metawatch", bufferNumber, i, x, y, w, h, operationNumber, (int)(sentData/2)];
+        NSString *strSubject = [NSString stringWithFormat:@"sbs%01i.%02i.%02i.%03i.%03i.%03i.%03i.%02i.%04i part of bitmap to metawatch",
+                                (int)[[self.isBkg selectedCell] tag] , bufferNumber, i, x, y, w, h, operationNumber, (int)(sentData/2)];
  
         NSString *strMailContent = [strContent substringWithRange: NSMakeRange (0, length_toSend)];
         

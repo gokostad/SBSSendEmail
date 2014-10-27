@@ -61,6 +61,7 @@
     IBOutlet NSProgressIndicator *progressIndicator;
     IBOutlet NSTextField *lblError;
     IBOutlet NSStepper *stepperToScreen;
+    IBOutlet NSMatrix *isBkg;
 }
 
 @property(retain, readwrite) NSTextField *toField;
@@ -75,6 +76,7 @@
 @property(retain, readwrite) NSProgressIndicator *progressIndicator;
 @property(retain, readwrite) NSTextField *lblError;
 @property(retain, readwrite) NSStepper *stepperToScreen;
+@property(retain, readwrite) NSMatrix *isBkg;
 
 - (IBAction)sendEmailMessage:(id)sender;
 
