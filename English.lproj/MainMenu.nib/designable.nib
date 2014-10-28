@@ -577,7 +577,7 @@
                                 <textField verticalHuggingPriority="750" id="433">
                                     <rect key="frame" x="4" y="14" width="127" height="17"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                    <textFieldCell key="cell" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="To Screen (1-20):" id="434">
+                                    <textFieldCell key="cell" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="To Screen (1-8):" id="434">
                                         <font key="font" metaFont="system"/>
                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -589,7 +589,7 @@
                                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="left" placeholderString="1" drawsBackground="YES" id="r0R-mX-FOX">
                                         <numberFormatter key="formatter" formatterBehavior="default10_4" numberStyle="decimal" minimumIntegerDigits="1" maximumIntegerDigits="309" maximumFractionDigits="3" id="5Pe-B2-RVN">
                                             <real key="minimum" value="1"/>
-                                            <real key="maximum" value="20"/>
+                                            <real key="maximum" value="8"/>
                                             <metadata>
                                                 <real key="inspectorSampleValue" value="1"/>
                                             </metadata>
@@ -632,7 +632,7 @@
                                 <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" id="jic-iZ-CSl">
                                     <rect key="frame" x="174" y="9" width="19" height="27"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                    <stepperCell key="cell" continuous="YES" alignment="left" minValue="1" maxValue="20" doubleValue="1" id="T7b-XH-sPe"/>
+                                    <stepperCell key="cell" continuous="YES" alignment="left" minValue="1" maxValue="8" doubleValue="1" id="T7b-XH-sPe"/>
                                     <connections>
                                         <binding destination="CsK-oz-vFe" name="value" keyPath="selection.stepperValue" id="Wlb-ya-tEj"/>
                                         <outlet property="nextKeyView" destination="390" id="l6G-3x-JVp"/>

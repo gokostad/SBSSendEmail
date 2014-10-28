@@ -51,6 +51,12 @@
 
 const int MAX_SENDING_MAIL_CONTENT_LENGTH = 0x1F4; //500
 
+const int LCD_PIXEL_WIDTH = 128;
+const int LCD_PIXEL_HEIGHT = 128;
+
+const int ICON_WIDTH = 64;
+const int ICON_HEIGHT = 64;
+
 @interface Controller (delegate) <SBApplicationDelegate>
 @end
 
@@ -110,7 +116,7 @@ stepperToScreen, iconToBkg;
     @catch (NSException *exception) {
         bufferNumber = 1;
     }
-    if (bufferNumber < 1 || bufferNumber > 20)
+    if (bufferNumber < 1 || bufferNumber > 8)
         bufferNumber = 1;
     bufferNumber--;
 
@@ -185,6 +191,17 @@ stepperToScreen, iconToBkg;
         return;
     }
 
+    int isBkgOrIcon = (int)[[self.isBkg selectedCell] tag];
+    if (isBkgOrIcon == 2)
+    {
+        if (w * h > ICON_WIDTH * ICON_HEIGHT)
+        {
+            [self.lblError setStringValue:@"Error: size of icon is too big, max 4096!"];
+            [self.lblError setHidden:false];
+            return;
+        }
+    }
+    
     int operationNumber = [self.picOperation indexOfSelectedItem];
     if (operationNumber < 0)
         operationNumber = 0;
@@ -201,11 +218,12 @@ stepperToScreen, iconToBkg;
     for (int i = 1; length_toSend > 0; i++) {
         
         NSString *strSubject = [NSString stringWithFormat:@"sbs%01i.%01i.%02i.%02i.%03i.%03i.%03i.%03i.%02i.%04i.%01i part of bitmap to metawatch",
-                                (int)[[self.isBkg selectedCell] tag], (int)[self.iconToBkg state],
+                                (int)[[self.isBkg selectedCell] tag],
+                                (int)[self.iconToBkg state],
                                 bufferNumber, i,
                                 x, y, w, h,
                                 operationNumber, (int)(sentData/2),
-                                (length_toSend == length_strContent) ? 0 : 1];
+                                (length_toSend >= length_strContent) ? 1 : 0];
  
         NSString *strMailContent = [strContent substringWithRange: NSMakeRange (0, length_toSend)];
         
@@ -253,7 +271,10 @@ stepperToScreen, iconToBkg;
         
         [self.progressIndicator setDoubleValue:sentData];
 
-        [NSThread sleepForTimeInterval:20.0f];
+        if (length_toSend > 0)
+        {
+            [NSThread sleepForTimeInterval:20.0f];
+        }
     }
     
     [self.progressIndicator setHidden:true];
