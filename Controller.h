@@ -62,6 +62,7 @@
     IBOutlet NSTextField *lblError;
     IBOutlet NSStepper *stepperToScreen;
     IBOutlet NSMatrix *isBkg;
+    IBOutlet NSButton *iconToBkg;
 }
 
 @property(retain, readwrite) NSTextField *toField;
@@ -77,6 +78,7 @@
 @property(retain, readwrite) NSTextField *lblError;
 @property(retain, readwrite) NSStepper *stepperToScreen;
 @property(retain, readwrite) NSMatrix *isBkg;
+@property(retain, readwrite) NSButton *iconToBkg;
 
 - (IBAction)sendEmailMessage:(id)sender;
 

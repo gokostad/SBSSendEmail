@@ -59,7 +59,7 @@ const int MAX_SENDING_MAIL_CONTENT_LENGTH = 0x1F4; //500
 
 @synthesize toField, fromField, messageContent, isBkg, toScreen,
 coordX, coordY, picW, picH, picOperation, progressIndicator, lblError,
-stepperToScreen;
+stepperToScreen, iconToBkg;
 
 
 - (void)awakeFromNib {
@@ -113,7 +113,7 @@ stepperToScreen;
     if (bufferNumber < 1 || bufferNumber > 20)
         bufferNumber = 1;
     bufferNumber--;
-    
+
     NSString *strX = [self.coordX stringValue];
     int x = 0;
     @try {
@@ -184,7 +184,7 @@ stepperToScreen;
         [self.lblError setHidden:false];
         return;
     }
-    
+
     int operationNumber = [self.picOperation indexOfSelectedItem];
     if (operationNumber < 0)
         operationNumber = 0;
@@ -199,11 +199,13 @@ stepperToScreen;
     int sentData = 0;
  
     for (int i = 1; length_toSend > 0; i++) {
-        NSInteger nI = [self.isBkg selectedTag];
- 
         
-        NSString *strSubject = [NSString stringWithFormat:@"sbs%01i.%02i.%02i.%03i.%03i.%03i.%03i.%02i.%04i part of bitmap to metawatch",
-                                (int)[[self.isBkg selectedCell] tag] , bufferNumber, i, x, y, w, h, operationNumber, (int)(sentData/2)];
+        NSString *strSubject = [NSString stringWithFormat:@"sbs%01i.%01i.%02i.%02i.%03i.%03i.%03i.%03i.%02i.%04i.%01i part of bitmap to metawatch",
+                                (int)[[self.isBkg selectedCell] tag], (int)[self.iconToBkg state],
+                                bufferNumber, i,
+                                x, y, w, h,
+                                operationNumber, (int)(sentData/2),
+                                (length_toSend == length_strContent) ? 0 : 1];
  
         NSString *strMailContent = [strContent substringWithRange: NSMakeRange (0, length_toSend)];
         
