@@ -73,7 +73,19 @@ stepperToScreen, iconToBkg;
     [self.messageContent setFont:[NSFont fontWithName:@"Courier" size:12]];
     [self.toScreen setTitleWithMnemonic: @"1"];
     [self.toScreen.formatter setNilSymbol: @"1"];
-
+    
+    NSString *savedValue = [[NSUserDefaults standardUserDefaults]
+                            stringForKey:@"toAddress"];
+    if (savedValue != nil)
+    {
+        [self.toField setStringValue:savedValue];
+    }
+    savedValue = [[NSUserDefaults standardUserDefaults]
+                            stringForKey:@"fromAddress"];
+    if (savedValue != nil)
+    {
+        [self.fromField setStringValue:savedValue];
+    }
 }
 
 - (BOOL)applicationShouldTerminateAfterLastWindowClosed:(NSApplication *)sender {
@@ -93,6 +105,15 @@ stepperToScreen, iconToBkg;
 
 - (IBAction)sendEmailMessage:(id)sender {
 
+    NSString *valueToSave = [self.toField stringValue];
+    
+    [[NSUserDefaults standardUserDefaults] setObject:valueToSave forKey:@"toAddress"];
+    
+    valueToSave = [self.fromField stringValue];
+    [[NSUserDefaults standardUserDefaults] setObject:valueToSave forKey:@"fromAddress"];
+    
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
 		/* create a Scripting Bridge object for talking to the Mail application */
 	MailApplication *mail = [SBApplication applicationWithBundleIdentifier:@"com.apple.Mail"];
     
@@ -273,7 +294,7 @@ stepperToScreen, iconToBkg;
 
         if (length_toSend > 0)
         {
-            [NSThread sleepForTimeInterval:20.0f];
+            [NSThread sleepForTimeInterval:10.0f];
         }
     }
     
